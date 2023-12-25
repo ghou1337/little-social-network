@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple social media service</title>
+</head>
+<body>
+<div class="posts-container">
+    <h>Main page</h>
+    <div th:each="post: ${posts}">
+        <div th:text="${post.getId()}"></div>
+        <div class="post-actions">
+            <form th:method="POST" th:action="@{like}">
+                <input value="Like" type="submit" class="input-submit-like">
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  social:
+    image: social-app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/social_network_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 228322
+    depends_on:
+      - db
+  db:
+    container_name: social_db
+    image: postgres:16.1
+    restart: always
+    environment:
+      POSTGRES_DB: social_network_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 228322
+    ports:
+      - "5432:5432"
