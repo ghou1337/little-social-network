@@ -1,10 +1,13 @@
 package pl.social.frontend.demo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import pl.social.frontend.demo.model.Post;
+import pl.social.frontend.demo.service.PostService;
 import reactor.core.publisher.Flux;
 
 import java.util.List;
@@ -12,18 +15,14 @@ import java.util.stream.Collector;
 
 @Controller
 public class MainPageController {
+    @Autowired
+    private RestTemplate restTemplate;
 
-    private final WebClient wedClient;
-
-    public MainPageController(WebClient.Builder webClientBuilder) {
-        this.wedClient = webClientBuilder.baseUrl("http://localhost:8082/api").build();
-    }
-
-
+    @Autowired
+    private PostService postService;
     @GetMapping("/main")
     public String mainPage(Model model) {
-        Flux<Post> postsFLux = wedClient.get().uri("/get-posts").retrieve().bodyToFlux(Post.class);
-        model.addAttribute("posts", postsFLux);
+        model.addAttribute("");
         return "main-page";
     }
 }

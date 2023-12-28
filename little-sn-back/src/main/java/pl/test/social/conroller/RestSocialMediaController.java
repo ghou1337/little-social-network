@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.test.social.model.Post;
 import pl.test.social.service.PostService;
-import reactor.core.publisher.Flux;
+
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class RestSocialMediaController {
 
 
     @GetMapping("/get-posts")
-    public Flux<Post> getAllPosts() {
+    public List<Post> getAllPosts() {
         return postService.getAll();
     }
 }

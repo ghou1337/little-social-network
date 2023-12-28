@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.test.social.model.Post;
 import pl.test.social.repo.PostRepo;
-import reactor.core.publisher.Flux;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ public class PostService {
     @Autowired
     private PostRepo postRepo;
 
-    public Flux<Post> getAll() {
+    public List<Post> getAll() {
         return postRepo.findAll();
     }
 }
